@@ -1,0 +1,46 @@
+﻿INSERT INTO user (id_user,nama,username,password) VALUES(101,'Restu Assegaf','resres','ahyaudah');
+INSERT INTO user (id_user,nama,username,password) VALUES(102,'Made Surya','sursur','jadiiii');
+INSERT INTO user (id_user,nama,username,password) VALUES(103,'Maulana','ulul','begini');
+INSERT INTO user (id_user,nama,username,password) VALUES(104,'Fitri Eka','fitri','begitu');
+
+INSERT INTO tukangJahit (id_tukang_jahit,id_user) VALUES(301,101);
+INSERT INTO tukangJahit (id_tukang_jahit,id_user) VALUES(302,102);
+INSERT INTO tukangJahit (id_tukang_jahit,id_user) VALUES(303,103);
+INSERT INTO tukangJahit (id_tukang_jahit,id_user) VALUES(304,104);
+
+INSERT INTO manager (id_manager,id_user) VALUES(201,101);
+INSERT INTO manager (id_manager,id_user) VALUES(201,102);
+INSERT INTO manager (id_manager,id_user) VALUES(201,103);
+INSERT INTO manager (id_manager,id_user) VALUES(201,104);
+
+INSERT INTO anggota(id_anggota,id_user,alamat) VALUES(401,101,'Jalan Kalimun no 123');
+INSERT INTO anggota(id_anggota,id_user,alamat) VALUES(402,102,'Jalan Sudirman no 1');
+INSERT INTO anggota(id_anggota,id_user,alamat) VALUES(403,103,'Jalan Kalijaga no 5');
+INSERT INTO anggota(id_anggota,id_user,alamat) VALUES(404,104,'Jalan kakilima no 55');
+
+
+INSERT INTO bahanBaku(id_bahan,nama,jumlah) VALUES(501,' basic voal',100);
+INSERT INTO bahanBaku(id_bahan,nama,jumlah) VALUES(502,'Premium voal',100);
+INSERT INTO bahanBaku(id_bahan,nama,jumlah) VALUES(503,'Scraff',100);
+INSERT INTO bahanBaku(id_bahan,nama,jumlah) VALUES(504,'cotton',100);
+INSERT INTO bahanBaku(id_bahan,nama,jumlah) VALUES(505,'spandex',100);
+
+INSERT INTO pakaian(id_pakaian,id_bahan,ukuran,warna,jenis,harga) VALUES(601,504,'panjang 3x4','merah','cotton',250000);
+INSERT INTO pakaian(id_pakaian,id_bahan,ukuran) VALUES(602,503,'panjang 3x4','pink','scraff',255000);
+INSERT INTO pakaian(id_pakaian,id_bahan,ukuran) VALUES(603,504,'panjang 7x4','merah','cotton',290000);
+INSERT INTO pakaian(id_pakaian,id_bahan,ukuran) VALUES(604,504,'panjang 5x4','merah','cotton',259000);
+
+INSERT INTO pesanan(id_pesanan,id_anggota,id_pakaian,id_tukang_jahit,jumlah,tgl_pesan,tgl_jadi) VALUES(701,401,601,301,2,'12/JAN/2018','20/JAN/2018');
+INSERT INTO pesanan(id_pesanan,id_anggota,id_pakaian,id_tukang_jahit) VALUES(702,402,602,302,1,'13/JAN/2018','26/JAN/2018');
+INSERT INTO pesanan(id_pesanan,id_anggota,id_pakaian,id_tukang_jahit) VALUES(703,403,603,303,2,'09/JAN/2018','20/JAN/2018');
+INSERT INTO pesanan(id_pesanan,id_anggota,id_pakaian,id_tukang_jahit) VALUES(701,404,604,304,1,'12/JAN/2018','20/JAN/2018');
+
+INSERT INTO transaksi(id_transaksi,tanggal,status) VALUES(801,'13/JAN/2018','LUNAS');
+INSERT INTO transaksi(id_transaksi,tanggal,status) VALUES(802,'27/JAN/2018','LUNAS');
+INSERT INTO transaksi(id_transaksi,tanggal,status) VALUES(803,'21/JAN/2018','LUNAS');
+INSERT INTO transaksi(id_transaksi,tanggal,status) VALUES(801,'27/JAN/2018','LUNAS');
+
+INSERT INTO pesantransaksi(id,id_pesan,id_transaksi) VALUES(901,701,801);
+INSERT INTO pesantransaksi(id,id_pesan,id_transaksi) VALUES(902,702,802);
+INSERT INTO pesantransaksi(id,id_pesan,id_transaksi) VALUES(903,703,803);
+INSERT INTO pesantransaksi(id,id_pesan,id_transaksi) VALUES(904,704,804);

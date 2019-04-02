@@ -1,0 +1,77 @@
+CREAT TABLE user(
+	id_user NUMBER,
+	nama VARCHAR2(15),
+	username VARCHAR2(15),
+	password VARCHAR2(15),
+	CONSTRAINT pk_user PRIMARY KEY (id_user) ENABLE
+);
+
+CREAT TABLE tukangJahit(
+	id_tukang_jahit NUMBER,
+	id_user NUMBER,
+	CONSTRAINT pk_tukangJahit PRIMARY KEY (id_tukang_jahit) ENABLE
+);
+ALTER TABLE tukangJahit ADD CONSTRAINT fk_tukangJahit FOREIGN KEY (id_user) REFERENCES user(id_user);
+
+CREAT TABLE manager(
+	id_manager NUMBER,
+	id_user NUMBER,
+	CONSTRAINT pk_manager PRIMARY KEY (id_manager) ENABLE
+);
+ALTER TABLE manager ADD CONSTRAINT fk_manager FOREIGN KEY (id_user) REFERENCES user(id_user);
+
+CREAT TABLE anggota(
+	id_anggota NUMBER,
+	id_user NUMBER,
+	alamat VARCHAR2(15),
+	CONSTRAINT pk_anggota PRIMARY KEY (id_anggota) ENABLE
+);
+ALTER TABLE anggota ADD CONSTRAINT fk_anggota FOREIGN KEY (id_user) REFERENCES user(id_user);
+
+CREAT TABLE bahanBaku(
+	id_bahan NUMBER,
+	nama VARCHAR2(15),
+	jumlah NUMBER,
+	CONSTRAINT pk_bahanBaku PRIMARY KEY (id_bahan) ENABLE
+);
+
+CREAT TABLE pakaian(
+	id_pakaian NUMBER,
+	id_bahan NUMBER,
+	ukuran VARCHAR2(15),
+	warna VARCHAR2(15),
+	jenis VARCHAR2(15),
+	harga NUMBER,
+	CONSTRAINT pk_pakaian PRIMARY KEY (id_pakaian) ENABLE
+);
+ALTER TABLE pakaian ADD CONSTRAINT fk_pakaian FOREIGN KEY (id_bahan) REFERENCES bahanBaku(id_bahan);
+
+CREAT TABLE pesanan(
+	id_pesanan NUMBER,
+	id_anggota NUMBER,
+	id_pakaian NUMBER,
+	id_tukang_jahit NUMBER,
+	jumlah NUMBER,
+	tgl_pesan DATE,
+	tgl_jadi DATE,
+	CONSTRAINT pk_pesanan PRIMARY KEY (id_pesanan) ENABLE
+);
+ALTER TABLE pesanan ADD CONSTRAINT fk1_pesanan FOREIGN KEY (id_anggota) REFERENCES anggota(id_anggota);
+ALTER TABLE pesanan ADD CONSTRAINT fk2_pesanan FOREIGN KEY (id_tukang_jahit) REFERENCES tukangJahit(id_tukang_jahit);
+ALTER TABLE pesanan ADD CONSTRAINT fk3_pesanan FOREIGN KEY (id_pakaian) REFERENCES pakaian(id_pakaian);
+
+CREAT TABLE transaksi(
+	id_transaksi NUMBER,
+	tanggal NUMBER,
+	status VARCHAR2(15),
+	CONSTRAINT pk_transaksi PRIMARY KEY (id_transaksi) ENABLE
+);
+
+CREAT TABLE pesananTransaksi(
+	id NUMBER,
+	id_pesanan NUMBER,
+	id_transaksi NUMBER,
+	CONSTRAINT pk_pesananTransaksi PRIMARY KEY (id) ENABLE
+);
+ALTER TABLE pesananTransaksi ADD CONSTRAINT fk1_pesananTransaksi FOREIGN KEY (id_pesanan) REFERENCES pesanan(id_pesanan);
+ALTER TABLE pesananTransaksi ADD CONSTRAINT fk2_pesananTransaksi FOREIGN KEY (id_transaksi) REFERENCES transaksi(id_transaksi);
